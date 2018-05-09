@@ -7,7 +7,7 @@ from sklearn.ensemble import AdaBoostClassifier
 """
 read data from csv file
 """ 
-df = pd.read_csv("spam.csv") # need to read data in utf8, have a look kaggle data cleaning challenge
+df = pd.read_csv("./spam.csv") # need to read data in utf8, have a look kaggle data cleaning challenge
 
 print("original data:")
 print(df.describe())
@@ -59,3 +59,9 @@ model = AdaBoostClassifier()
 model.fit(train_X, train_label)
 print "AdaBoost accuracy: ", model.score(test_X, test_label)
 
+
+predict_vector = CountVectorizer(decode_error="replace",vocabulary=counter_vectorizer.vocabulary_)
+spam_case = predict_vector.fit_transform(np.array(['SIX chances to win CASH! From 100 to 20,000 pounds txt> CSH11 and send to 87575. Cost 150p/day, 6days, 16+ TsandCs apply Reply HL 4 info']))
+ham_case = predict_vector.fit_transform(np.array(['hello, baby']))
+print model.predict(spam_case)
+print model.predict(ham_case)
