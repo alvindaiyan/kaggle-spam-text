@@ -59,7 +59,10 @@ model = AdaBoostClassifier()
 model.fit(train_X, train_label)
 print "AdaBoost accuracy: ", model.score(test_X, test_label)
 
-
+"""
+see https://stackoverflow.com/questions/29788047/keep-tfidf-result-for-predicting-new-content-using-scikit-for-python
+to get the above model reused for prediction
+"""
 predict_vector = CountVectorizer(decode_error="replace",vocabulary=counter_vectorizer.vocabulary_)
 spam_case = predict_vector.fit_transform(np.array(['SIX chances to win CASH! From 100 to 20,000 pounds txt> CSH11 and send to 87575. Cost 150p/day, 6days, 16+ TsandCs apply Reply HL 4 info']))
 ham_case = predict_vector.fit_transform(np.array(['hello, baby']))
